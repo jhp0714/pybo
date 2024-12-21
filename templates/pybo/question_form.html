@@ -20,10 +20,6 @@
         {% endif %}
         <!-- 오류 표시 End -->
         <div class="form-group">
-            <label for="category">카테고리</label>
-            {{ form.category }}
-        </div>
-        <div class="form-group">
             <label for="subject">제목</label>
             <input type="text" class="form-control" name="subject" id="subject"
                    value="{{ form.subject.value|default_if_none:'' }}">

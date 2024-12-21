@@ -11,19 +11,16 @@ def index(request):
     page = request.GET.get('page', 1)       # 페이지
     kw = request.GET.get('kw', '')          # 검색어
     so = request.GET.get('so', 'recent')    # 정렬 기준
-    category_id = request.GET.get('category',1)
-
-    question_list = Question.objects.filter(category = category_id)
 
     # 정렬
     if so == 'recommend':
-        question_list = question_list.annotate(
+        question_list = Question.objects.annotate(
             num_voter=Count('voter')).order_by('-num_voter', '-create_date')
     elif so == 'popular':
-        question_list = question_list.annotate(
+        question_list = Question.objects.annotate(
             num_answer=Count('answer')).order_by('-num_answer', '-create_date')
     else:   # recent
-        question_list = question_list.order_by('-create_date')
+        question_list = Question.objects.order_by('-create_date')
 
     # 조회
     if kw:
@@ -43,7 +40,6 @@ def index(request):
         'page': page,
         'kw': kw,
         'so':so,
-        'categorylist' : Question.categorylist,
     }
     return render(request, 'pybo/question_list.html', context)
 
@@ -55,7 +51,6 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk = question_id)
     page = request.GET.get('page', '1')
     so = request.GET.get('so', 'recent')
-    category_id = question.category
 
 
     # 정렬
@@ -77,6 +72,5 @@ def detail(request, question_id):
         'answer_list':page_obj,
         'page':page,
         'so':so,
-        'category_id' : category_id,
     }
     return render(request, 'pybo/question_detail.html', context)

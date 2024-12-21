@@ -13,17 +13,12 @@
 </head>
 <body>
 {% include "navbar.html" %}
-<div class="container my-3">
-	<div class="row">
-		{% include "sidebar.html" %}
-		<div class="col">
-			<!-- 기본 템플릿 안에 삽입될 내용 Start -->
-			{% block content %}
-			{% endblock %}
-			<!-- 기본 템플릿 안에 삽입될 내용 End -->
-		</div>
-	</div>
-</div>
+
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+
 
 <!-- jQuery JS -->
 <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
