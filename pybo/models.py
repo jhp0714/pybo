@@ -1,7 +1,22 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    description = models.CharField(max_length=20, null=True, blank=True)
+    has_answer = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('pybo:index', args=[self.name])
 
 class Question(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+                                 related_name='category_question')
     author = models.ForeignKey(User, on_delete=models.CASCADE,
                                related_name='author_question')
     subject = models.CharField(max_length = 200)

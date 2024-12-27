@@ -1,9 +1,9 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q, Count
 from ..models import Question, Answer
 
-def index(request):
+def index(request, category_name=None):
     """
     pybo 목록 출력
     """
@@ -74,3 +74,9 @@ def detail(request, question_id):
         'so':so,
     }
     return render(request, 'pybo/question_detail.html', context)
+
+def redirect_to_question(request):
+    """
+    pybo/에 접속하면 pybo/question/으로 리디렉션
+    """
+    return redirect('pybo:index', category_name='qna')
