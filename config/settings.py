@@ -64,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pybo.context_processors.category_list',  # 여기 추가
             ],
         },
     },
@@ -125,5 +126,5 @@ STATICFILES_DIRS = [
 ]
 
 # 로그인 로그아웃 성공 시 자동으로 이동할 URL
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/pybo/'
+LOGOUT_REDIRECT_URL = '/pybo/'

@@ -12,21 +12,26 @@
 		<title>Hello, pybo!</title>
 </head>
 <body>
-{% include "navbar.html" %}
+    {% include "navbar.html" %}
 
-<!-- 기본 템플릿 안에 삽입될 내용 Start -->
-{% block content %}
-{% endblock %}
-<!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 왼쪽 카테고리 -->
+            <div class="col-md-2">
+                {% include "category_bar.html" %}
+            </div>
 
+            <!-- 오른쪽 메인 콘텐츠 -->
+            <div class="col-md-10">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
 
-<!-- jQuery JS -->
-<script src="{% static 'jquery-3.4.1.min.js' %}"></script>
-<!-- Bootstrap JS -->
-<script src="{% static 'bootstrap.min.js' %}"></script>
-<!-- 자바스크립트 Start -->
-{% block script %}
-{% endblock %}
-<!-- 자바스크립트 End -->
+    <!-- JS 파일들 -->
+    <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    {% block script %}
+    {% endblock %}
 </body>
-</html>

@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q, Count
-from ..models import Question, Answer
+from ..models import Question, Answer, Category
 
 def index(request, category_name=None):
     """
@@ -12,15 +12,19 @@ def index(request, category_name=None):
     kw = request.GET.get('kw', '')          # 검색어
     so = request.GET.get('so', 'recent')    # 정렬 기준
 
+    # 카테고리
+    category = get_object_or_404(Category, name=category_name)
+    question_list = Question.objects.filter(category=category)
+
     # 정렬
     if so == 'recommend':
-        question_list = Question.objects.annotate(
+        question_list = question_list.annotate(
             num_voter=Count('voter')).order_by('-num_voter', '-create_date')
     elif so == 'popular':
-        question_list = Question.objects.annotate(
+        question_list = question_list.annotate(
             num_answer=Count('answer')).order_by('-num_answer', '-create_date')
     else:   # recent
-        question_list = Question.objects.order_by('-create_date')
+        question_list = question_list.order_by('-create_date')
 
     # 조회
     if kw:
@@ -40,6 +44,7 @@ def index(request, category_name=None):
         'page': page,
         'kw': kw,
         'so':so,
+        'current_category' : category
     }
     return render(request, 'pybo/question_list.html', context)
 
@@ -51,7 +56,7 @@ def detail(request, question_id):
     question = get_object_or_404(Question, pk = question_id)
     page = request.GET.get('page', '1')
     so = request.GET.get('so', 'recent')
-
+    category = question.category
 
     # 정렬
     if so == 'recommend':
@@ -72,6 +77,7 @@ def detail(request, question_id):
         'answer_list':page_obj,
         'page':page,
         'so':so,
+        'current_category':category
     }
     return render(request, 'pybo/question_detail.html', context)
 
