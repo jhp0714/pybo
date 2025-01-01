@@ -1,0 +1,16 @@
+<div class="bg-light-green">
+    <!-- 게시판 제목 -->
+    <div class="board-title">게시판</div>
+    <!-- 게시판 목록 -->
+    <table class="table category-bar">
+        <tbody>
+            {% for category in categories %}
+                <tr class="{% if category == current_category %}table-highlight{% endif %}">
+                    <td>
+                        <a href="{% url 'pybo:index' category.name %}">{{ category.description }}</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
