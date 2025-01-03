@@ -6,7 +6,7 @@ from django.utils import timezone
 from ..forms import CommentForm
 from ..models import Question, Answer, Comment
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_create_question(request, question_id):
     """
     pybo 질문 댓글 등록
@@ -27,7 +27,7 @@ def comment_create_question(request, question_id):
     context = {'form':form}
     return render(request, 'pybo/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_modify_question(request, comment_id):
     """
     pybo 질문 댓글 수정
@@ -51,7 +51,7 @@ def comment_modify_question(request, comment_id):
     context = {'form': form}
     return render(request, 'pybo/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_delete_question(request, comment_id):
     """
     pybo 질문 댓글 삭제
@@ -64,7 +64,7 @@ def comment_delete_question(request, comment_id):
         comment.delete()
     return redirect('pybo:detail', question_id=comment.question_id)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_create_answer(request, answer_id):
     """
     pybo 답변 댓글 등록
@@ -85,7 +85,7 @@ def comment_create_answer(request, answer_id):
     context = {'form':form}
     return render(request, 'pybo/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_modify_answer(request, comment_id):
     """
     pybo 답변 댓글 수정
@@ -109,7 +109,7 @@ def comment_modify_answer(request, comment_id):
     context = {'form':form}
     return render(request, 'pybo/comment_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def comment_delete_answer(request, comment_id):
     """
     pybo 답글 댓글 삭제

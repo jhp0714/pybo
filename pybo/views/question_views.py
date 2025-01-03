@@ -6,7 +6,7 @@ from django.utils import timezone
 from ..forms import QuestionForm
 from ..models import Question
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def question_create(request):
     """
     pybo 질문 등록
@@ -24,7 +24,7 @@ def question_create(request):
     context = {'form':form}
     return render(request, 'pybo/question_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def question_modify(request, question_id):
     """
     pybo 질문 수정
@@ -47,7 +47,7 @@ def question_modify(request, question_id):
     context = {'form':form}
     return render(request, 'pybo/question_form.html', context)
 
-@login_required(login_url='common:login')
+@login_required(login_url='login')
 def question_delete(request, question_id):
     """
     pybo 질문 삭제
