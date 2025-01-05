@@ -11,5 +11,5 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
 
     # 비밀번호 변경
-    path('password_reset/', auth_views.PasswordResetView.as_view)
+
 ]
