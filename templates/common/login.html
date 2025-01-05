@@ -27,9 +27,6 @@
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
-        <div class="col-3">
-            <a href="{% url 'common:password_reset' %}">비밀 번호를 잊으셨나요?</a>
-        </div>
     </form>
 </div>
 {% endblock %}

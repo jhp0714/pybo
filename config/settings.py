@@ -128,13 +128,3 @@ STATICFILES_DIRS = [
 # 로그인 로그아웃 성공 시 자동으로 이동할 URL
 LOGIN_REDIRECT_URL = '/pybo/'
 LOGOUT_REDIRECT_URL = '/pybo/'
-
-
-# email 설정
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False  # SSL 비활성화
-EMAIL_HOST_USER = 'gowns171@gmail.com'  # Gmail 주소
-EMAIL_HOST_PASSWORD = 'iydg fxrn agmq uojn'  # 생성한 앱 비밀번호
