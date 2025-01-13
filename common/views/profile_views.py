@@ -5,6 +5,7 @@ from django.views.generic import ListView
 from itertools import chain
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from pybo.models import Question, Answer, Comment
+from django.http import JsonResponse
 
 import logging
 
@@ -103,6 +104,9 @@ class ProfileVoteListView(ProfileObjectListView):
             key = lambda obj: obj.create_date,
             reverse=True
         )
+        # 콘솔에 object_list 출력
+        # logger.debug(f"ProfileVoteListView queryset: {_queryset}")
+        # print(f"ProfileVoteListView queryset1111: {answer_list}")  # 터미널에서 바로 확인용
         return _queryset
 
     def get_context_data(self, **kwargs):
@@ -112,4 +116,7 @@ class ProfileVoteListView(ProfileObjectListView):
             'profile_type' : self.profile_type,
         })
 
+        # 콘솔에 object_list 출력
+        # logger.debug(f"ProfileVoteListView queryset: {context}")
+        # print(f"ProfileVoteListView queryset2222: {context}")  # 터미널에서 바로 확인용
         return context

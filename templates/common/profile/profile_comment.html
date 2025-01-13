@@ -9,6 +9,8 @@
         <thead>
         <tr class="text-center thead-dark">
             <th>번호</th>
+            <th>게시판</th>
+            <th>구분</th>
             <th style="width:50%">내용</th>
             <th>작성일시</th>
         </tr>
@@ -18,6 +20,13 @@
         {% for object in object_list %}
         <tr class="text-center">
             <td>{{ page_obj.start_index|add:forloop.counter0 }}</td>
+            {% if object.question.category %}
+                <td>{{ object.question.category.description }}</td>
+                <td>질문</td>
+            {% else %}
+                <td>{{ object.answer.question.category.description }}</td>
+                <td>답변</td>
+            {% endif %}
             <td class="text-left">
                 <a href="{% if object.question.id %}{% url 'pybo:detail' object.question.id %}{% else %}{% url 'pybo:detail' object.id %}{% endif %}#comment_{{ object.id }}">
                     {{ object.content|slice:":100" }}{% if object.content|length > 100 %}...{% endif %}
@@ -28,7 +37,7 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="3">댓글이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>

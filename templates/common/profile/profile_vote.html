@@ -9,6 +9,7 @@
         <thead>
         <tr class="text-center thead-dark">
             <th>번호</th>
+            <th>게시판</th>
             <th>구분</th>
             <th>추천</th>
             <th style="width:50%">제목 또는 내용</th>
@@ -20,7 +21,13 @@
         {% for object in object_list %}
         <tr class="text-center">
             <td>{{ page_obj.start_index|add:forloop.counter0 }}</td>
-            <td>{{ object.category }}</td>
+            {% if object.subject %}
+                <td>{{ object.category.description }}</td>
+                <td>질문</td>
+            {% else %}
+                <td>{{ object.question.category.description }}</td>
+                <td>답변</td>
+            {% endif %}
             <td>
                 {% if object.voter.all.count > 0 %}
                 <span class="badge badge-warning px-2 py-1">
@@ -44,7 +51,7 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="3">추천이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>

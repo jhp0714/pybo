@@ -20,8 +20,8 @@
     <table class="table">
         <thead>
         <tr class="text-center thead-dark">
-            <th>게시판</th>
             <th>번호</th>
+            <th>게시판</th>
             <th>추천</th>
             <th style="width:50%">내용</th>
             <th>작성일시</th>
@@ -31,8 +31,8 @@
         {% if object_list %}
         {% for object in object_list %}
         <tr class="text-center">
-            <td>{{ object.question.category.description }}</td>
             <td>{{ page_obj.start_index|add:forloop.counter0 }}</td>
+            <td>{{ object.question.category.description }}</td>
             <td>
                 {% if object.voter.all.count > 0 %}
                 <span class="badge badge-warning px-2 py-1">
@@ -51,7 +51,7 @@
         {% endfor %}
         {% else %}
         <tr>
-            <td colspan="3">질문이 없습니다.</td>
+            <td colspan="3">답변이 없습니다.</td>
         </tr>
         {% endif %}
         </tbody>
