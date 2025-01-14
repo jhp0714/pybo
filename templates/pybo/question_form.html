@@ -20,6 +20,12 @@
         {% endif %}
         <!-- 오류 표시 End -->
         <div class="form-group">
+            <label for="category">게시판 선택</label>
+            <select class="form-control" name="category" id="category">
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.description }}</option>
+                {% endfor %}
+            </select>
             <label for="subject">제목</label>
             <input type="text" class="form-control" name="subject" id="subject"
                    value="{{ form.subject.value|default_if_none:'' }}">
