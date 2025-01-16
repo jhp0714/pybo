@@ -13,6 +13,9 @@
         <ul class="navbar-nav">
             <li class="nav-item d-flex align-items-center">
                 {% if user.is_authenticated %}
+                <span class="nav_link">
+                    <a class="nav-link" href="{% url 'pybo:recently_question' %}">최근</a>
+                </span>
                 <span class="nav-link">
                     <a class="nav-link" href="{% url 'common:profile_base' user.id %}"> {{ user.username }}</a>
                 </span>

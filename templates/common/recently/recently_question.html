@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+<div class="container my-3">
+    <h4 class="border-bottom pb-2 my-3">최근 게시물</h4>
+    {% include "common/recently/recently_tabs.html" %}
+    <table class="table">
+        <thead>
+            <tr class="text-center thed-dark">
+                <th>번호</th>
+                <th>게시판</th>
+                <th>추천</th>
+                <th style="width:50%">제목</th>
+                <th>작성일지</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if object_list %}
+        {% for object in object_list %}
+        <tr class="text-center">
+            <td>{{ forloop.counter }}</td>
+            <td>{{ object.category.description }}</td>
+            <td>
+                {% if object.voter.all.count > 0 %}
+                <span class="badge badge-warning px-2 py-1">
+                    {{ object.voter.all.count }}
+                </span>
+                {% endif %}
+            </td>
+            <td class="text-left">
+                <a href="{% url 'pybo:detail' object.id %}">
+                    {{ object.subject|slice:":75" }}{% if object.subject|length > 75 %}...{% endif %}
+                    {% if object.answer_set.count > 0 %}
+                    <span class="text-danger small ml-2">
+                        {{ object.answer_set.count }}
+                    </span>
+                    {% endif %}
+                </a>
+            </td>
+            <td>{{ object.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+
+</div>
+{% endblock %}
