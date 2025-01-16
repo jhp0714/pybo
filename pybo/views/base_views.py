@@ -23,6 +23,8 @@ def index(request, category_name=None):
     elif so == 'popular':
         question_list = question_list.annotate(
             num_answer=Count('answer')).order_by('-num_answer', '-create_date')
+    elif so == 'hit':
+        question_list = question_list.order_by('-hits', '-create_date')
     else:   # recent
         question_list = question_list.order_by('-create_date')
 
@@ -54,6 +56,7 @@ def detail(request, question_id):
     pybo 내용 출력
     """
     question = get_object_or_404(Question, pk = question_id)
+    question.update_hits()      # 조회수 업데이트
     page = request.GET.get('page', '1')
     so = request.GET.get('so', 'recent')
     category = question.category

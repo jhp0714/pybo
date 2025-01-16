@@ -11,6 +11,7 @@
                 <th>게시판</th>
                 <th>추천</th>
                 <th style="width:50%">제목</th>
+                <th>조회수</th>
                 <th>작성일지</th>
             </tr>
         </thead>
@@ -37,6 +38,7 @@
                     {% endif %}
                 </a>
             </td>
+            <td>{{ object.hits }}</td>
             <td>{{ object.create_date }}</td>
         </tr>
         {% endfor %}

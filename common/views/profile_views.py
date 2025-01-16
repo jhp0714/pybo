@@ -36,6 +36,8 @@ class ProfileObjectListView(ListView):
         elif self.so == 'popular':
             object_list = object_list.annotate(
                 num_answer=Count('answer')).order_by('-num_answer', '-create_date')
+        elif self.so == 'hit':
+            object_list = object_list.order_by('-hits', '-create_date')
         else :  # recent
             object_list = object_list.order_by('-create_date')
 
