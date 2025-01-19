@@ -9,6 +9,7 @@ urlpatterns = [
         template_name='common/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('signup/', account_views.signup, name='signup'),
+    path('delete_account/', account_views.delete_account, name='delete_account'),
 
     # 비밀번호 변경
     path('password_reset/', account_views.PasswordResetView.as_view(), name='password_reset'),

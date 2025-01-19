@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login, views as auth_views
 from django.shortcuts import render, redirect
 from common.forms import UserForm, PasswordResetForm
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from pybo.models import Question, Answer, Comment
 
 def signup(request):
     """
@@ -19,6 +21,20 @@ def signup(request):
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form' : form})
+
+@login_required
+def delete_account(request):
+    """
+    회원 탈퇴
+    """
+    user = request.user
+    # 사용자 연관 데이터 삭제
+    Question.objects.filter(author=user).delete()
+    Answer.objects.filter(author=user).delete()
+    Comment.objects.filter(author=user).delete()
+
+    user.delete()
+    return redirect('common:login')
 
 class PasswordResetView(auth_views.PasswordResetView):
     """

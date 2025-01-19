@@ -39,7 +39,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # provider
+    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    # 'allauth.socialaccount.providers.naver',
+
 ]
+
+
+# 사이트 ID 설정 (기본값 1)
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -49,8 +65,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -128,6 +149,7 @@ STATICFILES_DIRS = [
 # 로그인 로그아웃 성공 시 자동으로 이동할 URL
 LOGIN_REDIRECT_URL = '/pybo/'
 LOGOUT_REDIRECT_URL = '/pybo/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/pybo/'
 
 # 이메일 설정
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -137,3 +159,12 @@ EMAIL_USE_TLS = True  # TLS 사용
 EMAIL_USE_SSL = False  # SSL 비활성화
 EMAIL_HOST_USER = 'gowns171@gmail.com'  # Gmail 계정
 EMAIL_HOST_PASSWORD = 'iydg fxrn agmq uojn'  # Gmail 계정 비밀번호 또는 앱 비밀번호
+
+SOCIALACCOUNT_PROVIDERS = {
+    'kakao':{
+        'APP':{
+            'client_id':'0af7abb46c43e88acd9bd6beec39364d',
+            'key':'',
+        }
+    }
+}
