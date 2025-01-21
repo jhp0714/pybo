@@ -22,6 +22,8 @@ def signup(request):
         form = UserForm()
     return render(request, 'common/signup.html', {'form' : form})
 
+
+
 @login_required
 def delete_account(request):
     """

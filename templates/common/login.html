@@ -29,6 +29,12 @@
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
+        <h3>소셜 로그인</h3>
+        <div>
+            <a href="{% provider_login_url 'google' %}">구글로 로그인</a><br>
+            <a href="{% provider_login_url 'naver' %}">네이버로 로그인</a><br>
+            <a href="{% provider_login_url 'kakao' %}">카카오로 로그인</a>
+        </div>
         <div class="text-left">
             <span>
                 <a href="{% url 'common:password_reset' %}">계정을 잊으셨나요?</a>

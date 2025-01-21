@@ -47,9 +47,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     # provider
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.kakao',
-    # 'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.naver'
 
 ]
 
@@ -160,11 +160,30 @@ EMAIL_USE_SSL = False  # SSL 비활성화
 EMAIL_HOST_USER = 'gowns171@gmail.com'  # Gmail 계정
 EMAIL_HOST_PASSWORD = 'iydg fxrn agmq uojn'  # Gmail 계정 비밀번호 또는 앱 비밀번호
 
+
+# 소셜 로그인 제공자 설정
 SOCIALACCOUNT_PROVIDERS = {
+    # 카카오 설정
     'kakao':{
         'APP':{
             'client_id':'0af7abb46c43e88acd9bd6beec39364d',
             'key':'',
         }
-    }
+    },
+    # 구글 설정
+    'google': {
+        'APP': {
+            'client_id' : '1055637909071-sb05kqh9l9m1rjd5c8g9quqloc4nc8ls.apps.googleusercontent.com',
+            'secret':'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',
+        },
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    },
+    # 네이버 설정
+    'naver': {
+        'APP': {
+            'client_id': 'kgs2dUVCKD7pdtlsMOyx',
+            'secret': '6hrkKeROyt',
+        },
+    },
 }
