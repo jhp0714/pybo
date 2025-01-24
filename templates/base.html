@@ -9,6 +9,8 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
 		<!-- pybo CSS -->
 		<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+		<!-- SimpleMDE CSS -->
+		<link rel="stylesheet" type="text/css" href="{% static 'simplemde.min.css' %}">
 		<title>Hello, pybo!</title>
 </head>
 <body>
@@ -32,6 +34,39 @@
     <!-- JS 파일들 -->
     <script src="{% static 'jquery-3.4.1.min.js' %}"></script>
     <script src="{% static 'bootstrap.min.js' %}"></script>
+    <script src="{% static 'simplemde.min.js' %}"></script>
+
     {% block script %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var questionEditor = document.getElementById("question-editor");
+            if (questionEditor) {
+                new SimpleMDE({
+                    element: questionEditor,
+                    spellChecker: false,
+                    autosave: {
+                        enabled: true,
+                        uniqueId: "question-editor-content",
+                        delay: 1000,
+                    }
+                });
+            }
+
+            var answerEditor = document.getElementById("answer-editor");
+            if (answerEditor) {
+                new SimpleMDE({
+                    element: answerEditor,
+                    spellChecker: false,
+                    autosave: {
+                        enabled: true,
+                        uniqueId: "answer-editor-content",
+                        delay: 1000,
+                    }
+                });
+            }
+        });
+    </script>
     {% endblock %}
+
 </body>
+</html>

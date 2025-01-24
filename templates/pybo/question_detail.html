@@ -256,7 +256,7 @@
         </div>
         {% endif %}
         <div class="form-group">
-            <textarea name="content" id="content"
+            <textarea name="content" id="answer-editor"
                       {% if not user.is_authenticated %}disabled{% endif %}
                       class="form-control" rows="10"></textarea>
         </div>
@@ -293,5 +293,16 @@ $(document).ready(function(){
         $("#sortForm").submit();
     });
 });
+</script>
+<script>
+    var commentMDE = new SimpleMDE({
+        element: document.getElementById("answer-editor"),
+        spellChecker: false,  // 맞춤법 검사 비활성화
+        autosave: {
+            enabled: true,
+            uniqueId: "answer-editor-content",
+            delay: 1000,
+        }
+    });
 </script>
 {% endblock %}
