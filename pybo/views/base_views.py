@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.db.models import Q, Count
 from ..models import Question, Answer, Category
 
-def index(request, category_name=None):
+def index(request, category_name='qna'):
     """
     pybo 목록 출력
     """
