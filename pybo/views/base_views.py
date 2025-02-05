@@ -8,6 +8,7 @@ def index(request, category_name='qna'):
     pybo 목록 출력
     """
     # 입력 인자
+    3/0
     page = request.GET.get('page', 1)       # 페이지
     kw = request.GET.get('kw', '')          # 검색어
     so = request.GET.get('so', 'recent')    # 정렬 기준
